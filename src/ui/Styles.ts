@@ -1,12 +1,12 @@
 import { TextStyle, ViewStyle } from "react-native";
 import { Style } from "../piw-native-utils-internal";
 
-export interface GraphStyle extends Style {
+export interface ReferenceSetSelectorStyle extends Style {
     container: ViewStyle & { rippleColor?: string };
     caption: TextStyle;
 }
 
-export const defaultGraphStyle: GraphStyle = {
+export const defaultReferenceSetSelectorStyle: ReferenceSetSelectorStyle = {
     container: {
         alignSelf: "baseline",
         borderRadius: 30,

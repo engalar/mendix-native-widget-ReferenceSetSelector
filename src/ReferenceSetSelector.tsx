@@ -1,12 +1,12 @@
 import { createElement, ReactElement, useCallback } from "react";
-import { GraphProps } from "../typings/GraphProps";
+import { ReferenceSetSelectorProps } from "../typings/ReferenceSetSelectorProps";
 import { Pressable, Text, View } from "react-native";
-import { defaultGraphStyle, GraphStyle } from "./ui/Styles";
+import { defaultReferenceSetSelectorStyle, ReferenceSetSelectorStyle } from "./ui/Styles";
 import { flattenStyles } from "./piw-native-utils-internal";
 import { executeAction } from "./piw-utils-internal";
 
-export function Graph(props: GraphProps<GraphStyle>): ReactElement {
-    const styles = flattenStyles(defaultGraphStyle, props.style);
+export function ReferenceSetSelector(props: ReferenceSetSelectorProps<ReferenceSetSelectorStyle>): ReactElement {
+    const styles = flattenStyles(defaultReferenceSetSelectorStyle, props.style);
 
     const renderText = useCallback(() => {
         return (

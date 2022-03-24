@@ -1,6 +1,6 @@
 {
-  "name": "graph",
-  "widgetName": "Graph",
+  "name": "reference",
+  "widgetName": "ReferenceSetSelector",
   "version": "1.0.1",
   "description": "My widget description",
   "packagePath": "mendixcn.native",
