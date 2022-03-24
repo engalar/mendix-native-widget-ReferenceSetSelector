@@ -1,5 +1,5 @@
 var packageConfig = require('../package.json');
-var { updateXml } = require('./xml');
+var { updateXml, replaceFile } = require('./xml');
 
 updateXml("./src/package.xml", json => {
   json.package.clientModule[0].$.name = packageConfig.widgetName;
@@ -13,3 +13,6 @@ updateXml(`./src/${packageConfig.widgetName}.xml`, json => {
   json.widget.name[0] = packageConfig.widgetName;
   json.widget.description[0] = packageConfig.description;
 })
+
+replaceFile(`./src/${packageConfig.widgetName}.tsx`, /Graph/g, packageConfig.widgetName);
+replaceFile(`./src/ui/Styles.ts`, /Graph/g, packageConfig.widgetName);

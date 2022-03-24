@@ -5,7 +5,7 @@
             <widgetFile path="Graph.xml"/>
         </widgetFiles>
         <files>
-            <file path="mendixcn/graph"/>
+            <file path="mendixcn/native/graph"/>
         </files>
     </clientModule>
 </package>
