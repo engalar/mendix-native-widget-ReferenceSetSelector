@@ -5,7 +5,7 @@
             <widgetFile path="ReferenceSetSelector.xml"/>
         </widgetFiles>
         <files>
-            <file path="mendixcn.native/reference"/>
+            <file path="mendixcn/native/referencesetselector/ReferenceSetSelector"/>
         </files>
     </clientModule>
 </package>

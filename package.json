@@ -7,7 +7,9 @@
   "author": "wengao.liu@siemens.com",
   "dependencies": {
     "ahooks": "^2.10.14",
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "react-native-multiple-select": "^0.5.7",
+    "react-native-vector-icons": "^9.1.0"
   },
   "scripts": {
     "emulator": " start %LocalAppData%/Android/Sdk/emulator/emulator.exe -netdelay none -netspeed full -studio-params tests/emu.tmp -avd Pixel_2_API_29",
@@ -24,6 +26,7 @@
     "restoreTestProject": "cmd /c xcopy dummy tests\\testProject /E /Y",
     "start": "pluggable-widgets-tools start:native",
     "build": "pluggable-widgets-tools build:native",
+    "bundle": "\"C:\\Program Files\\Mendix\\9.6.0.27784\\modeler\\mxbuild.exe\" --java-home=\"%JAVA_HOME%\" --java-exe-path=\"%JAVA_HOME%/bin/java.exe\" --target=deploy --native-packager --loose-version-check tests\testProject\testProject.mpr",
     "format": "pluggable-widgets-tools format",
     "release": "pluggable-widgets-tools release:native",
     "lint": "eslint --config ../../../.eslintrc.js --ext .jsx,.js,.ts,.tsx src/",
