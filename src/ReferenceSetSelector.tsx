@@ -1,4 +1,5 @@
-import { createElement, ReactElement, useRef, useState } from "react";
+import { createElement, ReactElement, useCallback, useMemo, useRef, useState } from "react";
+import { ValueStatus } from 'mendix';
 import { ReferenceSetSelectorProps } from "../typings/ReferenceSetSelectorProps";
 import { View } from "react-native";
 import { ReferenceSetSelectorStyle } from "./ui/Styles";
@@ -14,54 +15,40 @@ const defaultSearchIcon = (
     />
 );
 
-const items = [
-    { id: '2iijs7yta', name: 'Ondo' },
-    { id: 'iijs7yta', name: 'Ondo' },
-    { id: 'ijs7yta', name: 'Ondo' },
-    { id: 'js7yta', name: 'Ondo' },
-    { id: 's7yta', name: 'Ondo' },
-    { id: '1', name: 'Ondo' },
-    { id: '2', name: 'Ondo' },
-    { id: '3', name: 'Ondo' },
-    { id: '4', name: 'Ondo' },
-    { id: '5', name: 'Ondo' },
-    { id: '6', name: 'Ondo' },
-    { id: '8', name: 'Ondo' },
-    { id: '9', name: 'Ondo' },
-    { id: '11', name: 'Ondo' },
-    { id: '12', name: 'Ondo' },
-    {
-        id: 'a0s0a8ssbsd',
-        name: 'Ogun'
-    }, {
-        id: '16hbajsabsd',
-        name: 'Calabar'
-    }, {
-        id: 'nahs75a5sg',
-        name: 'Lagos'
-    }, {
-        id: '667atsas',
-        name: 'Maiduguri'
-    }, {
-        id: 'hsyasajs',
-        name: 'Anambra'
-    }, {
-        id: 'djsjudksjd',
-        name: 'Benue'
-    }, {
-        id: 'sdhyaysdj',
-        name: 'Kaduna'
-    }, {
-        id: 'suudydjsjd',
-        name: 'Abuja'
-    }
-];
-
 export function ReferenceSetSelector(props: ReferenceSetSelectorProps<ReferenceSetSelectorStyle>): ReactElement {
-    console.log(props);
-
     const ref = useRef<MultiSelect>(null);
-    const [selectedItems, setselectedItems] = useState<any>([]);
+
+    const [selectedItems, setselectedItems] = useState<string[]>([]);
+
+    const items = useMemo(() => {
+        if (props.options.status === ValueStatus.Available) {
+            return props.options.items!.map(d => ({
+                id: props.attKey.get(d).value!,
+                name: props.attLabel.get(d).value!,
+            }));
+        } else {
+            return [];
+        }
+    }, [props.options])
+
+    const onSelectedItemsChange = useCallback(
+        (e: string[]) => {
+            selectedItems.forEach(d => {
+                if (!e.includes(d)) {
+                    // uncheck
+                }
+            })
+            e.forEach(d => {
+                if (!selectedItems.includes(d)) {
+                    // check
+                    const idx = items.findIndex(f => f.id === d);
+                    props.actionSelect?.get(props.options.items![idx]).execute();
+                }
+            })
+            setselectedItems(e);
+        },
+        [props.actionSelect, props.options],
+    )
 
     return (
         <View style={{ flex: 1 }}>
@@ -71,10 +58,7 @@ export function ReferenceSetSelector(props: ReferenceSetSelectorProps<ReferenceS
                 items={items}
                 uniqueKey="id"
                 ref={ref}
-                onSelectedItemsChange={e => {
-                    setselectedItems(e);
-                    console.log(e);
-                }}
+                onSelectedItemsChange={onSelectedItemsChange}
                 selectedItems={selectedItems}
                 selectText="Pick Items"
                 searchInputPlaceholderText="Search Items..."

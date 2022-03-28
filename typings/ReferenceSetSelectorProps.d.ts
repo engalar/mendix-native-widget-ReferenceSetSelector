@@ -4,13 +4,16 @@
  * @author Mendix UI Content Team
  */
 import { CSSProperties } from "react";
-import { ActionValue, DynamicValue } from "mendix";
+import { ListValue, ListActionValue, ListAttributeValue } from "mendix";
 
 export interface ReferenceSetSelectorProps<Style> {
     name: string;
     style: Style[];
-    caption: DynamicValue<string>;
-    onClick?: ActionValue;
+    options: ListValue;
+    attKey: ListAttributeValue<string>;
+    attLabel: ListAttributeValue<string>;
+    actionSelect?: ListActionValue;
+    actionUnselect?: ListActionValue;
 }
 
 export interface ReferenceSetSelectorPreviewProps {
@@ -18,6 +21,9 @@ export interface ReferenceSetSelectorPreviewProps {
     style: string;
     styleObject?: CSSProperties;
     readOnly: boolean;
-    caption: string;
-    onClick: {} | null;
+    options: {} | { type: string } | null;
+    attKey: string;
+    attLabel: string;
+    actionSelect: {} | null;
+    actionUnselect: {} | null;
 }

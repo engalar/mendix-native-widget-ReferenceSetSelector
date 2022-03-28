@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget id="mendixcn.native.referencesetselector.ReferenceSetSelector" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Native" xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+<widget id="mendixcn.native.referencesetselector.ReferenceSetSelector" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Native"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>ReferenceSetSelector</name>
     <description>My widget description</description>
     <studioProCategory>Display</studioProCategory>
@@ -8,19 +10,34 @@
     <properties>
         <propertyGroup caption="General">
             <propertyGroup caption="General">
-                <property key="caption" type="textTemplate">
-                    <caption>Caption</caption>
-                    <description/>
+                <property key="options" type="datasource" isList="true" required="true">
+                    <caption>选项</caption>
+                    <description></description>
+                </property>
+                <property key="attKey" type="attribute" dataSource="options" required="true" isPath="no">
+                    <caption>Key</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="attLabel" type="attribute" dataSource="options" required="true" isPath="no">
+                    <caption>标签</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
                 </property>
             </propertyGroup>
             <propertyGroup caption="Events">
-                <property key="onClick" type="action" required="false">
-                    <caption>On click</caption>
+                <property key="actionSelect" type="action" required="false" dataSource="options">
+                    <caption>正选</caption>
                     <description/>
                 </property>
-            </propertyGroup>
-            <propertyGroup caption="Common">
-                <systemProperty key="Name"/>
+                <property key="actionUnselect" type="action" required="false" dataSource="options">
+                    <caption>反选</caption>
+                    <description/>
+                </property>
             </propertyGroup>
         </propertyGroup>
     </properties>
