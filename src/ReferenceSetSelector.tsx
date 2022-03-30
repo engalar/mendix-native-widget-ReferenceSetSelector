@@ -36,6 +36,8 @@ export function ReferenceSetSelector(props: ReferenceSetSelectorProps<ReferenceS
             selectedItems.forEach(d => {
                 if (!e.includes(d)) {
                     // uncheck
+                    const idx = items.findIndex(f => f.id === d);
+                    props.actionUnselect?.get(props.options.items![idx]).execute();
                 }
             })
             e.forEach(d => {
@@ -47,7 +49,7 @@ export function ReferenceSetSelector(props: ReferenceSetSelectorProps<ReferenceS
             })
             setselectedItems(e);
         },
-        [props.actionSelect, props.options],
+        [props.actionSelect, props.options, selectedItems],
     )
 
     return (
